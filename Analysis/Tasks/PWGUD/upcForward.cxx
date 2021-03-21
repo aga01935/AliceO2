@@ -17,7 +17,7 @@ it can be copied using
 alien_cp alien:/alice/data/2015/LHC15o/000246392/pass5_lowIR/PWGZZ/Run3_Conversion/138_20210129-0800_child_1/0001/AO2D.root  file:./
 */
 #include
-  "Framework/runDataProcessing.h"
+"Framework/runDataProcessing.h"
 #include
   "Framework/AnalysisTask.h"
 #include
@@ -32,8 +32,7 @@ alien_cp alien:/alice/data/2015/LHC15o/000246392/pass5_lowIR/PWGZZ/Run3_Conversi
 #include
   "TLorentzVector.h"
 #include
-  "AnalysisCore/TriggerAliases.h"
-using namespace std;
+  "AnalysisCore/TriggerAliases.h" using namespace std;
 using namespace o2;
 using namespace o2::framework;
 using namespace o2::framework::expressions;
