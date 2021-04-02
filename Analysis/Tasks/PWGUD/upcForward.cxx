@@ -81,17 +81,18 @@ struct UPCForward {
     bool iskMUP11fired = bc.alias()[kMUP11];
     bool iskMUP10fired = bc.alias()[kMUP10];
 
-    if (!iskMUP11fired || !iskMUP10fired) {
+    // selecting kMUP10 and 11 triggers
+    if (!iskMUP11fired && !iskMUP10fired) {
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 1);
 
-    if (!isV0Selection) {
+    if (isV0Selection) {
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 2);
 
-    if (!isFDSelection) {
+    if (isFDSelection) {
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 3);
@@ -117,7 +118,10 @@ struct UPCForward {
     }
     registry.fill(HIST("hSelectionCounter"), 5);
 
-    if (-4 > p1.Eta() > -2.5 || -4 > p2.Eta() > -2.5) {
+
+
+    if (-4 < p1.Eta() < -2.5 || -4 < p2.Eta() < -2.5) {
+
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 6);
@@ -130,8 +134,7 @@ struct UPCForward {
     registry.fill(HIST("hPx"), p.Px());
     registry.fill(HIST("hPy"), p.Py());
     registry.fill(HIST("hPz"), p.Pz());
-    registry.fill(HIST("hRap"), p1.Rapidity());
-    registry.fill(HIST("hRap"), p2.Rapidity());
+    registry.fill(HIST("hRap"), p.Rapidity());
     registry.fill(HIST("hMass"), p.M());
     registry.fill(HIST("hPhi"), p.Phi());
     registry.fill(HIST("hEta"), p1.Eta());
