@@ -52,7 +52,7 @@ struct UPCForward {
       registry.GetXaxis().(HIST("hSelectionCounter",SetBinLabel(i + 1, SelectionCuts[i].Data())));
     }*/
   }
- //new
+  //new
   void process(soa::Join<aod::BCs, aod::BcSels>::iterator const& bc, aod::Muons const& tracksMuon)
   {
     registry.fill(HIST("hSelectionCounter"), 0);
@@ -62,36 +62,36 @@ struct UPCForward {
     bool ispositive = kFALSE;
     bool isnegative = kFALSE;
 
-  // V0 and FD information
+    // V0 and FD information
     bool isBeamBeamV0A = bc.bbV0A();
-    bool isBeamGasV0A  = bc.bgV0A();
+    bool isBeamGasV0A = bc.bgV0A();
     bool isBeamBeamV0C = bc.bbV0C();
-    bool isBeamGasV0C  = bc.bgV0C();
+    bool isBeamGasV0C = bc.bgV0C();
 
     bool isBeamBeamFDA = bc.bbFDA();
-    bool isBeamGasFDA  = bc.bgFDA();
+    bool isBeamGasFDA = bc.bgFDA();
     bool isBeamBeamFDC = bc.bbFDC();
-    bool isBeamGasFDC  = bc.bgFDC();
+    bool isBeamGasFDC = bc.bgFDC();
 
     //offline V0 and FD selection
-    bool isV0Selection = isBeamBeamV0A || isBeamGasV0A ||isBeamGasV0C;
-    bool isFDSelection = isBeamBeamFDA || isBeamGasFDA ||isBeamBeamFDC ||isBeamGasFDC;
+    bool isV0Selection = isBeamBeamV0A || isBeamGasV0A || isBeamGasV0C;
+    bool isFDSelection = isBeamBeamFDA || isBeamGasFDA || isBeamBeamFDC || isBeamGasFDC;
 
     //CCUP10 and CCUP11 information
     bool iskMUP11fired = bc.alias()[kMUP11];
-    bool iskMUP10fired =  bc.alias()[kMUP10];
+    bool iskMUP10fired = bc.alias()[kMUP10];
 
     if (!iskMUP11fired || !iskMUP10fired) {
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 1);
 
-    if (!isV0Selection){
+    if (!isV0Selection) {
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 2);
 
-    if (!isFDSelection){
+    if (!isFDSelection) {
       return;
     }
     registry.fill(HIST("hSelectionCounter"), 3);
@@ -131,7 +131,7 @@ struct UPCForward {
     registry.fill(HIST("hPy"), p.Py());
     registry.fill(HIST("hPz"), p.Pz());
     registry.fill(HIST("hRap"), p1.Rapidity());
-    registry.fill(HIST("hRap"),p2.Rapidity());
+    registry.fill(HIST("hRap"), p2.Rapidity());
     registry.fill(HIST("hMass"), p.M());
     registry.fill(HIST("hPhi"), p.Phi());
     registry.fill(HIST("hEta"), p1.Eta());
