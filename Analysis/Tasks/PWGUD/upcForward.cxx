@@ -118,8 +118,6 @@ struct UPCForward {
     }
     registry.fill(HIST("hSelectionCounter"), 5);
 
-
-
     if (-4 < p1.Eta() < -2.5 || -4 < p2.Eta() < -2.5) {
 
       return;
